@@ -1,0 +1,8 @@
+<aura:component implements="flexipage:availableForAllPageTypes">
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    <aura:attribute name="csv" type="FileList[]" />
+    <aura:handler name="change" action="{!c.doInit}" value="{!v.csv}" />
+
+    <input type="file" files="{!v.csv}" accept=".csv, .CSV" />
+
+</aura:component>

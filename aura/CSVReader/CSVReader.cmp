@@ -1,29 +1,37 @@
 <aura:component implements="flexipage:availableForAllPageTypes">
     <aura:attribute type="String[]" name="headers" />
     <aura:attribute type="List" name="data" />
+    <aura:attribute type="Boolean" name="fileTypeError" default="false" />
     
-    <input type="file" class="file" aura:id="file" accept=".csv, .CSV" />
-    <lightning:button variant="brand" label="Upload" onclick="{! c.handleUpload }" />
-
-    <table>
-    	<thead>
-        	<aura:iteration items="{!v.headers}" var="h">
-            <th>
-            	{!h}
-            </th>
-            </aura:iteration>
-        </thead>
-        <tbody>
-            <aura:iteration items="{!v.data}" var="row">
-				<tr>
-                	<aura:iteration items="{!row}" var="cell">
-                    	<td>
-                        	{!cell}
-                        </td>
-                    </aura:iteration>
-                </tr>            
-        	</aura:iteration>
-        </tbody>
-    </table>
+    <lightning:card>
+        <input type="file" class="file" aura:id="file" accept=".csv, .CSV" />
+        <lightning:button variant="brand" label="Upload" onclick="{! c.handleUpload }" />
+    
+        <aura:if isTrue="{!v.fileTypeError == true}">
+            Wrong file type!
+            <aura:set attribute="else">
+                <table>
+                    <thead>
+                        <aura:iteration items="{!v.headers}" var="h">
+                        <th>
+                            {!h}
+                        </th>
+                        </aura:iteration>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{!v.data}" var="row">
+                            <tr>
+                                <aura:iteration items="{!row}" var="cell">
+                                    <td>
+                                        {!cell}
+                                    </td>
+                                </aura:iteration>
+                            </tr>            
+                        </aura:iteration>
+                    </tbody>
+                </table>
+            </aura:set>
+        </aura:if>
+    </lightning:card>
     
 </aura:component>

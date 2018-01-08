@@ -1,12 +1,17 @@
 ({
 	readCSV : function(cmp) {
 		var fileInput = cmp.find("file").getElement();
-    	var file = fileInput.files[0];
+        var file = fileInput.files[0];
         
-        var reader = new FileReader();
-        reader.readAsText(file);
-        reader.onload = loadHandler;
-        reader.onerror = errorHandler;
+        if(file.type === 'application/vnd.ms-excel'){
+            cmp.set("v.fileTypeError", false);
+            var reader = new FileReader();
+            reader.readAsText(file);
+            reader.onload = loadHandler;
+            reader.onerror = errorHandler;
+        } else {
+            cmp.set("v.fileTypeError", true);
+        }
         
         function loadHandler(event) {
           var csv = event.target.result;

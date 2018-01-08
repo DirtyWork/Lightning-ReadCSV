@@ -1,0 +1,29 @@
+<aura:component implements="flexipage:availableForAllPageTypes">
+    <aura:attribute type="String[]" name="headers" />
+    <aura:attribute type="List" name="data" />
+    
+    <input type="file" class="file" aura:id="file" accept=".csv, .CSV" />
+    <lightning:button variant="brand" label="Upload" onclick="{! c.handleUpload }" />
+
+    <table>
+    	<thead>
+        	<aura:iteration items="{!v.headers}" var="h">
+            <th>
+            	{!h}
+            </th>
+            </aura:iteration>
+        </thead>
+        <tbody>
+            <aura:iteration items="{!v.data}" var="row">
+				<tr>
+                	<aura:iteration items="{!row}" var="cell">
+                    	<td>
+                        	{!cell}
+                        </td>
+                    </aura:iteration>
+                </tr>            
+        	</aura:iteration>
+        </tbody>
+    </table>
+    
+</aura:component>

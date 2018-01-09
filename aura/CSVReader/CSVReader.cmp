@@ -33,5 +33,7 @@
             </aura:set>
         </aura:if>
     </lightning:card>
-    
+
+    <lightning:spinner aura:id="csvSpinner" class="slds-hide" variant="brand" size="small"/>
+
 </aura:component>

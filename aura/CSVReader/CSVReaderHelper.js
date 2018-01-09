@@ -1,5 +1,7 @@
 ({
 	readCSV : function(cmp) {
+        var spinner = cmp.find("csvSpinner");
+        $A.util.toggleClass(spinner, "slds-hide");
 		var fileInput = cmp.find("file").getElement();
         var file = fileInput.files[0];
         
@@ -11,6 +13,7 @@
             reader.onerror = errorHandler;
         } else {
             cmp.set("v.fileTypeError", true);
+            $A.util.toggleClass(spinner, "slds-hide");
         }
         
         function loadHandler(event) {
@@ -31,6 +34,7 @@
                 lines.push(tarr);
             }
             cmp.set("v.data", lines);
+            $A.util.toggleClass(spinner, "slds-hide");
         }
 
         function errorHandler(evt) {
